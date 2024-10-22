@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class HealthManager : MonoBehaviour
 {
-    public float healthAmount = 100f; // Starting health
-    public Image healthBar; // Reference to the health bar UI
+    public float healthAmount = 100f; 
+    public Image healthBar;
 
     void Start()
     {
@@ -16,16 +16,16 @@ public class HealthManager : MonoBehaviour
     public void Heal(float healingAmount)
     {
         healthAmount += healingAmount;
-        healthAmount = Mathf.Clamp(healthAmount, 0, 100); // Ensure health does not exceed 100
+        healthAmount = Mathf.Clamp(healthAmount, 0, 100); 
         UpdateHealthBar();
-        Debug.Log("Healed to: " + healthAmount); // Log new health amount
+        Debug.Log("Healed to: " + healthAmount);
     }
 
     private void UpdateHealthBar()
     {
         if (healthBar != null)
         {
-            healthBar.fillAmount = healthAmount / 100f; // Update the health bar UI
+            healthBar.fillAmount = healthAmount / 100f; 
         }
     }
 }
