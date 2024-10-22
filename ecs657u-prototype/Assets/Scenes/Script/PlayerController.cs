@@ -31,5 +31,12 @@ public class PlayerController : MonoBehaviour
         
         
         rb.AddForce(movement * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+
+        //STOP ROTATION on y axis:
+
+        if (rb.angularVelocity != Vector3.zero)
+        {
+            rb.angularVelocity = Vector3.zero;  // Stop unwanted rotation
+        }
     }
 }
