@@ -21,7 +21,7 @@ public class HealthManager : MonoBehaviour
         Debug.Log("Healed to: " + healthAmount);
     }
 
-    private void UpdateHealthBar()
+    public void UpdateHealthBar()
     {
         if (healthBar != null)
         {
