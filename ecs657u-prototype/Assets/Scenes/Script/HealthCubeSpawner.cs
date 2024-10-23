@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthCubeSpawner : MonoBehaviour
 {
     public GameObject cubePrefab;    
-    public int numberOfCubes = 30;   
+    public int numberOfCubes = 30;   //number of cubes to be spawned
 
     void Start()
     {
@@ -24,7 +24,7 @@ public class HealthCubeSpawner : MonoBehaviour
 
     for (int i = 0; i < numberOfCubes; i++)
     {
-        float randomX = Random.Range(0, terrain.terrainData.size.x);
+        float randomX = Random.Range(0, terrain.terrainData.size.x); //spawned randomly around map
         float randomZ = Random.Range(0, terrain.terrainData.size.z);
         float y = terrain.SampleHeight(new Vector3(randomX, 0, randomZ)) + (cubePrefab.GetComponent<Collider>().bounds.extents.y) + 0.5f;
 

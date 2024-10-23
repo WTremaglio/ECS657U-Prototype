@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;  // To handle List<T> for zombies
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DayNightCycle : MonoBehaviour
@@ -31,7 +31,7 @@ public class DayNightCycle : MonoBehaviour
         float currentRotationX = directionalLight.transform.eulerAngles.x;
         isNight = currentRotationX > 180f;
 
-        // Adjust zombie limits and spawn interval based on day or night
+        // spawn interval based on day or night
         if (isNight)
         {
             if (currentSpawnInterval != zombieSpawnInterval / 2f)  // Faster spawn at night
@@ -51,7 +51,7 @@ public class DayNightCycle : MonoBehaviour
             }
         }
 
-        // Optional: Clean up the active zombie list to remove null objects (destroyed zombies)
+       
         activeZombies.RemoveAll(zombie => zombie == null);
     }
 
@@ -59,7 +59,7 @@ public class DayNightCycle : MonoBehaviour
     {
         int maxZombies = isNight ? maxZombiesNight : maxZombiesDay;
 
-        if (zombiePrefab != null && activeZombies.Count < maxZombies)  // Ensure the prefab is assigned and max zombies not exceeded
+        if (zombiePrefab != null && activeZombies.Count < maxZombies)  // Ensure the prefab is assigned 
         {
             int randomIndex = Random.Range(0, spawnPoints.Length);
             Transform spawnPoint = spawnPoints[randomIndex];

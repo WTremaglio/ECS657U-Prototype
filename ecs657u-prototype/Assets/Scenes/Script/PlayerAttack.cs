@@ -2,20 +2,20 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public float attackRange = 1f;  // Range within which the player can hit a zombie
+    public float attackRange = 1f;  
     public int attackDamage = 10;    // Damage dealt to the zombie
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Punch(); // Call the punch function when the space bar is pressed
+            Punch(); // Call the punch function 
         }
     }
 
     void Punch()
     {
-        // Detect all colliders in the attack range
+        // Detect all colliders 
         Collider[] hitZombies = Physics.OverlapSphere(transform.position, attackRange);
 
         if (hitZombies.Length > 0)
@@ -30,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
                     if (zombieHealth != null)
                     {
                         zombieHealth.TakeDamage(attackDamage); // Apply damage to the zombie
-                        Debug.Log($"Zombie punched! Damage dealt: {attackDamage}"); // Log damage info
+                        Debug.Log($"Zombie punched! Damage dealt: {attackDamage}"); 
                     }
                 }
             }

@@ -1,3 +1,6 @@
+
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZombieChase : MonoBehaviour
@@ -11,6 +14,7 @@ public class ZombieChase : MonoBehaviour
 
     void Update()
     {
+        // Chase player logic remains the same
         if (player != null)
         {
             float distanceToPlayer = Vector3.Distance(transform.position, player.position);
@@ -21,22 +25,27 @@ public class ZombieChase : MonoBehaviour
                 transform.position += direction * moveSpeed * Time.deltaTime;
                 transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
             }
-            else
-            {
-                // Attack the player if in range and cooldown is over
-                if (Time.time > lastAttackTime + attackCooldown)
-                {
-                    lastAttackTime = Time.time;
-                    HealthManager playerHealth = player.GetComponent<HealthManager>();
-                    if (playerHealth != null)
-                    {
-                        playerHealth.healthAmount -= damageToPlayer; // Damage the player
-                        playerHealth.UpdateHealthBar(); // Update the health bar
-                    }
-                }
-            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+{
+    Debug.Log("Zombie collided with: " + collision.gameObject.name); 
+    
+    if (collision.gameObject.CompareTag("Player")) // Check if the collided object is the player
+    {
+        HealthManager playerHealth = collision.gameObject.GetComponent<HealthManager>();
+        
+        if (playerHealth != null && Time.time > lastAttackTime + attackCooldown)
+        {
+            lastAttackTime = Time.time; // Update attack time
+
+            // Decrease player's health
+            playerHealth.healthAmount -= damageToPlayer;
+            playerHealth.UpdateHealthBar();
+
+            Debug.Log("Player health reduced to: " + playerHealth.healthAmount); 
         }
     }
 }
-
-
+}

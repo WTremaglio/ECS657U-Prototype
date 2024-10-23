@@ -10,10 +10,10 @@ public class HealthManager : MonoBehaviour
 
     void Start()
     {
-        UpdateHealthBar();
+        UpdateHealthBar(); 
     }
 
-    public void Heal(float healingAmount)
+    public void Heal(float healingAmount) //updates health bar
     {
         healthAmount += healingAmount;
         healthAmount = Mathf.Clamp(healthAmount, 0, 100); 
