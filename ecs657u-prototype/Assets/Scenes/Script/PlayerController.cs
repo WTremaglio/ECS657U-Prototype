@@ -23,20 +23,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    
+
     void FixedUpdate()
     {
-       
         Vector3 movement = new Vector3(moveValue.x, 0.0f, moveValue.y);
-        
-        
-        rb.AddForce(movement * speed * Time.fixedDeltaTime, ForceMode.VelocityChange);
+        rb.velocity = movement * speed; // Directly set the velocity
 
-        //STOP ROTATION on y axis:
-
-        if (rb.angularVelocity != Vector3.zero)
-        {
-            rb.angularVelocity = Vector3.zero;  // Stop unwanted rotation
-        }
+        // STOP ROTATION on y axis:
+        rb.angularVelocity = Vector3.zero;  // Stop unwanted rotation
     }
+
 }
